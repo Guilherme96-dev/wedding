@@ -161,75 +161,65 @@ Até 24 Julho 2027
  
  <!-- Imagens a rodar -->
 <style>
-  /* Wrapper para ocultar excesso */
   .marquee-wrapper {
-    width: 100%;
-    height: 340px; /* altura padrão */
-    overflow: hidden;
-    position: relative;
-  }
+  width: 100%;
+  overflow: hidden;
+  height: 340px;
+  position: relative;
+}
 
-  /* Container flexível das imagens */
-  .marquee {
-    display: flex;
-    gap: 16px; /* espaçamento entre imagens */
-    width: max-content;
-    animation: marquee 20s linear infinite;
-  }
+.marquee {
+  display: flex;
+  width: 200%; /* metade para cada track */
+  animation: marquee 20s linear infinite;
+}
 
-  /* Itens individuais */
-  .marquee-item {
-    flex-shrink: 0;
-    width: 240px;
-    height: 100%;
-    overflow: hidden;
-  }
+.marquee-track {
+  display: flex;
+  flex: 1 0 50%; /* cada track ocupa metade da largura do container */
+}
 
-  .marquee-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    user-drag: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-  }
+.marquee-track img {
+  width: 240px; 
+  height: 100%;
+  object-fit: cover;
+  margin-right: 16px;
+}
 
-  /* Animação contínua */
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* ajusta conforme duplicação das imagens */
-  }
+/* Animação contínua */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
 
-  /* Responsivo para telemóveis */
-  @media (max-width: 640px) {
-    .marquee-wrapper {
-      height: 200px;
-    }
-    .marquee-item {
-      width: 140px;
-    }
-  }
+/* Responsivo */
+@media (max-width: 640px) {
+  .marquee-wrapper { height: 200px; }
+  .marquee-track img { width: 140px; }
+}
 </style>
 
 <div class="marquee-wrapper">
   <div class="marquee">
-    <!-- Primeiro conjunto de imagens -->
-    <div class="marquee-item"><img src="images/run_images/img1.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img2.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img3.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img4.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img5.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img6.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img7.jpeg" alt=""></div>
-
-    <!-- Segundo conjunto de imagens para animação infinita -->
-    <div class="marquee-item"><img src="images/run_images/img1.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img2.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img3.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img4.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img5.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img6.jpeg" alt=""></div>
-    <div class="marquee-item"><img src="images/run_images/img7.jpeg" alt=""></div>
+    <div class="marquee-track">
+      <img src="images/run_images/img1.jpeg" alt="">
+      <img src="images/run_images/img2.jpeg" alt="">
+      <img src="images/run_images/img3.jpeg" alt="">
+      <img src="images/run_images/img4.jpeg" alt="">
+      <img src="images/run_images/img5.jpeg" alt="">
+      <img src="images/run_images/img6.jpeg" alt="">
+      <img src="images/run_images/img7.jpeg" alt="">
+    </div>
+    <!-- duplicado para efeito infinito -->
+    <div class="marquee-track">
+      <img src="images/run_images/img1.jpeg" alt="">
+      <img src="images/run_images/img2.jpeg" alt="">
+      <img src="images/run_images/img3.jpeg" alt="">
+      <img src="images/run_images/img4.jpeg" alt="">
+      <img src="images/run_images/img5.jpeg" alt="">
+      <img src="images/run_images/img6.jpeg" alt="">
+      <img src="images/run_images/img7.jpeg" alt="">
+    </div>
   </div>
 </div>
 	
