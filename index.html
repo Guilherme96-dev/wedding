@@ -35,12 +35,9 @@ FR
  <section class="relative min-h-screen flex flex-col overflow-hidden bg-white">
  <div class="absolute inset-0 overflow-hidden">
  
-<div class="video-wrapper relative">
-  <video id="bg-video" loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-    <source src="images/video.mp4" type="video/mp4">
-  </video>
-  <button id="play-btn" class="absolute inset-0 w-full h-full">▶️</button>
-</div>
+<video autoplay loop muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover">
+  <source src="images/video.mp4" type="video/mp4">
+</video>
 
  <div class="absolute inset-0 bg-black/30">
  </div>
