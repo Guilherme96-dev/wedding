@@ -161,30 +161,23 @@ Até 24 Julho 2027
  
  <!-- Imagens a rodar -->
 <style>
-  <style>
   /* Wrapper que limita o conteúdo à largura da tela */
   .marquee-wrapper {
     width: 100%;
-    overflow: hidden;
+    overflow: hidden; /* esconde qualquer excesso */
     height: 340px; /* altura padrão */
     position: relative;
   }
 
-  /* Container das tracks duplicadas */
+  /* Marquee usando inline-flex evita problemas de largura no Safari */
   .marquee {
-    display: flex;
-    width: 200%; /* cada track ocupa metade da largura total */
+    display: inline-flex;
+    gap: 16px; /* espaçamento entre imagens */
     animation: marquee 20s linear infinite;
   }
 
-  /* Cada track de imagens ocupa metade da largura */
-  .marquee-track {
-    display: flex;
-    flex: 1 0 50%;
-    gap: 16px; /* espaçamento entre imagens */
-  }
-
-  .marquee-track img {
+  /* Imagens individuais */
+  .marquee img {
     width: 240px;
     height: 100%;
     object-fit: cover;
@@ -193,41 +186,38 @@ Até 24 Julho 2027
     pointer-events: none;
   }
 
-  /* Animação contínua */
+  /* Animação contínua infinita */
   @keyframes marquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-50%); } /* move metade das imagens duplicadas */
   }
 
   /* Responsivo para telemóveis */
   @media (max-width: 640px) {
     .marquee-wrapper { height: 200px; }
-    .marquee-track img { width: 140px; }
+    .marquee img { width: 140px; }
   }
-</style>
 </style>
 
 <div class="marquee-wrapper">
   <div class="marquee">
-    <div class="marquee-track">
-      <img src="images/run_images/img1.jpeg" alt="">
-      <img src="images/run_images/img2.jpeg" alt="">
-      <img src="images/run_images/img3.jpeg" alt="">
-      <img src="images/run_images/img4.jpeg" alt="">
-      <img src="images/run_images/img5.jpeg" alt="">
-      <img src="images/run_images/img6.jpeg" alt="">
-      <img src="images/run_images/img7.jpeg" alt="">
-    </div>
-    <!-- duplicado para efeito infinito -->
-    <div class="marquee-track">
-      <img src="images/run_images/img1.jpeg" alt="">
-      <img src="images/run_images/img2.jpeg" alt="">
-      <img src="images/run_images/img3.jpeg" alt="">
-      <img src="images/run_images/img4.jpeg" alt="">
-      <img src="images/run_images/img5.jpeg" alt="">
-      <img src="images/run_images/img6.jpeg" alt="">
-      <img src="images/run_images/img7.jpeg" alt="">
-    </div>
+    <!-- Conjunto original de imagens -->
+    <img src="images/run_images/img1.jpeg" alt="">
+    <img src="images/run_images/img2.jpeg" alt="">
+    <img src="images/run_images/img3.jpeg" alt="">
+    <img src="images/run_images/img4.jpeg" alt="">
+    <img src="images/run_images/img5.jpeg" alt="">
+    <img src="images/run_images/img6.jpeg" alt="">
+    <img src="images/run_images/img7.jpeg" alt="">
+
+    <!-- Conjunto duplicado para efeito infinito -->
+    <img src="images/run_images/img1.jpeg" alt="">
+    <img src="images/run_images/img2.jpeg" alt="">
+    <img src="images/run_images/img3.jpeg" alt="">
+    <img src="images/run_images/img4.jpeg" alt="">
+    <img src="images/run_images/img5.jpeg" alt="">
+    <img src="images/run_images/img6.jpeg" alt="">
+    <img src="images/run_images/img7.jpeg" alt="">
   </div>
 </div>
 	
