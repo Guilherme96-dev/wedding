@@ -160,66 +160,73 @@ Até 24 Julho 2027
 
  
  <!-- Imagens a rodar -->
-<style>
-  /* Wrapper que limita o conteúdo à largura da tela */
-  .marquee-wrapper {
-    width: 100%;
-    overflow: hidden; /* esconde qualquer excesso */
-    height: 340px; /* altura padrão */
-    position: relative;
-  }
-
-  /* Marquee usando inline-flex evita problemas de largura no Safari */
-  .marquee {
-    display: inline-flex;
-    gap: 16px; /* espaçamento entre imagens */
-    animation: marquee 20s linear infinite;
-  }
-
-  /* Imagens individuais */
-  .marquee img {
-    width: 240px;
-    height: 100%;
-    object-fit: cover;
-    user-drag: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-  }
-
-  /* Animação contínua infinita */
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* move metade das imagens duplicadas */
-  }
-
-  /* Responsivo para telemóveis */
-  @media (max-width: 640px) {
-    .marquee-wrapper { height: 200px; }
-    .marquee img { width: 140px; }
-  }
-</style>
-
 <div class="marquee-wrapper">
   <div class="marquee">
-    <!-- Conjunto original de imagens -->
-    <img src="images/run_images/img1.jpeg" alt="">
-    <img src="images/run_images/img2.jpeg" alt="">
-    <img src="images/run_images/img3.jpeg" alt="">
-    <img src="images/run_images/img4.jpeg" alt="">
-    <img src="images/run_images/img5.jpeg" alt="">
-    <img src="images/run_images/img6.jpeg" alt="">
-    <img src="images/run_images/img7.jpeg" alt="">
+    <!-- Imagens originais -->
+    <div class="marquee-track">
+      <img src="images/run_images/img1.jpeg" alt="">
+      <img src="images/run_images/img2.jpeg" alt="">
+      <img src="images/run_images/img3.jpeg" alt="">
+      <img src="images/run_images/img4.jpeg" alt="">
+      <img src="images/run_images/img5.jpeg" alt="">
+      <img src="images/run_images/img6.jpeg" alt="">
+      <img src="images/run_images/img7.jpeg" alt="">
+    </div>
 
-    <!-- Conjunto duplicado para efeito infinito -->
-    <img src="images/run_images/img1.jpeg" alt="">
-    <img src="images/run_images/img2.jpeg" alt="">
-    <img src="images/run_images/img3.jpeg" alt="">
-    <img src="images/run_images/img4.jpeg" alt="">
-    <img src="images/run_images/img5.jpeg" alt="">
-    <img src="images/run_images/img6.jpeg" alt="">
-    <img src="images/run_images/img7.jpeg" alt="">
+    <!-- Duplicadas para animação infinita -->
+    <div class="marquee-track">
+      <img src="images/run_images/img1.jpeg" alt="">
+      <img src="images/run_images/img2.jpeg" alt="">
+      <img src="images/run_images/img3.jpeg" alt="">
+      <img src="images/run_images/img4.jpeg" alt="">
+      <img src="images/run_images/img5.jpeg" alt="">
+      <img src="images/run_images/img6.jpeg" alt="">
+      <img src="images/run_images/img7.jpeg" alt="">
+    </div>
   </div>
 </div>
+
+<style>
+.marquee-wrapper {
+  width: 100%;
+  overflow-x: hidden; /* evita scroll horizontal */
+  height: 340px;
+  position: relative;
+}
+
+.marquee {
+  display: flex;
+  gap: 16px;
+  width: max-content; /* cresce com as imagens, mas o wrapper corta excesso */
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+}
+
+.marquee-track img {
+  width: 240px;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+}
+
+/* Animação contínua */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* move metade das imagens duplicadas */
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .marquee-wrapper { height: 200px; }
+  .marquee-track img { width: 140px; }
+}
+</style>
 	
 	
 
