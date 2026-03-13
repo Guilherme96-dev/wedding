@@ -834,7 +834,7 @@ Até 24 Julho 2027
         </div>
 
         <!-- Botão enviar -->
-        <button type="submit"
+        <button id="submit-btn" type="submit"
                 class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-ivory hover:bg-cream border border-gold/30 h-10 px-4 py-2 w-full gap-2 text-white font-medium"
                 style="background-color:rgb(197,164,109)"
                 data-pt="Enviar Resposta"
@@ -1114,33 +1114,46 @@ btnFR.addEventListener("click", () => {
     // Inicial render
     renderAdults();
 	
-document.getElementById("rsvp-form").addEventListener("submit", function(e) {
+const form = document.getElementById("rsvp-form");
+const submitBtn = document.getElementById("submit-btn");
 
+form.addEventListener("submit", function(e) {
   e.preventDefault();
 
+  // Obtém o idioma atual do teu sistema
+  const lang = window.lang2 || "pt";
+  const sendingText = lang === "fr" ? "Envoi en cours" : "Enviando";
+
+  // Bloqueia o botão e inicia animação de pontos
+  let dots = 0;
+  submitBtn.disabled = true;
+
+  // Salva o texto original para fallback
+  const originalText = submitBtn.dataset[lang] || submitBtn.textContent;
+  submitBtn.textContent = sendingText;
+
+  const interval = setInterval(() => {
+    dots = (dots + 1) % 4;
+    submitBtn.textContent = sendingText + ".".repeat(dots);
+  }, 500);
+
+  // Envia o formulário
   const formData = new FormData(this);
 
   fetch("https://script.google.com/macros/s/AKfycbwMaBgCa8maAXAUPJeRvc3_y9VbzDfo_cX-bbhkAvhiyYXcxcu39dJ01IwF3HOCask/exec", {
     method: "POST",
     body: formData
   })
-  .then(() => {
-    window.location.href = "obrigado.html#rsvp-confirmation";
-  })
+	.then(() => {
+	  clearInterval(interval);
+	  // Redireciona para a página de obrigado
+	  window.location.href = "obrigado.html#rsvp-confirmation";
+	})
   .catch(() => {
-    alert("Erro ao enviar resposta.");
+    clearInterval(interval);
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText; // restaura texto original
+    alert(lang === "fr" ? "Erreur lors de l'envoi de la réponse." : "Erro ao enviar resposta.");
   });
-
 });
   </script>
- 
-<!-- Script para colocar o video a funcionar caso não dê -->
-<script>
-const video = document.getElementById('bg-video');
-const btn = document.getElementById('play-btn');
-
-btn.addEventListener('click', () => {
-  video.play();
-  btn.style.display = 'none';
-});
-</script>
