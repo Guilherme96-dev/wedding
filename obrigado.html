@@ -169,62 +169,73 @@ Até 24 Julho 2027
  
  <!-- Imagens a rodar -->
  
- <div class="flex animate-marquee gap-3 md:gap-4" style=width:max-content;animation-play-state:running>
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img1.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
+<div class="marquee-wrapper">
+  <div class="marquee">
+    <!-- Imagens originais -->
+    <div class="marquee-track">
+      <img src="images/run_images/img1.jpeg" alt="">
+      <img src="images/run_images/img2.jpeg" alt="">
+      <img src="images/run_images/img3.jpeg" alt="">
+      <img src="images/run_images/img4.jpeg" alt="">
+      <img src="images/run_images/img5.jpeg" alt="">
+      <img src="images/run_images/img6.jpeg" alt="">
+      <img src="images/run_images/img7.jpeg" alt="">
+    </div>
 
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img2.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
+    <!-- Duplicadas para animação infinita -->
+    <div class="marquee-track">
+      <img src="images/run_images/img1.jpeg" alt="">
+      <img src="images/run_images/img2.jpeg" alt="">
+      <img src="images/run_images/img3.jpeg" alt="">
+      <img src="images/run_images/img4.jpeg" alt="">
+      <img src="images/run_images/img5.jpeg" alt="">
+      <img src="images/run_images/img6.jpeg" alt="">
+      <img src="images/run_images/img7.jpeg" alt="">
+    </div>
+  </div>
+</div>
 
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img3.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img4.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img5.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img6.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img7.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-		<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img1.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
+<style>
+.marquee-wrapper {
+  width: 100%;
+  overflow-x: hidden; /* evita scroll horizontal */
+  height: 340px;
+  position: relative;
+}
 
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img2.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
+.marquee {
+  display: flex;
+  gap: 16px;
+  width: max-content; /* cresce com as imagens, mas o wrapper corta excesso */
+  animation: marquee 20s linear infinite;
+}
 
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img3.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img4.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img5.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img6.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
-	<div class="flex-shrink-0 overflow-hidden" style="height:340px;width:240px">
-	<img src="images/run_images/img7.jpeg" class="h-full w-full object-cover" draggable="false">
-	</div>
-	
+.marquee-track {
+  display: flex;
+  gap: 16px;
+}
+
+.marquee-track img {
+  width: 240px;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+}
+
+/* Animação contínua */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* move metade das imagens duplicadas */
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .marquee-wrapper { height: 200px; }
+  .marquee-track img { width: 140px; }
+}
+</style>
 	
 
 </div></div></section>
