@@ -469,7 +469,12 @@ Até 24 Julho 2027
 <section class="relative overflow-hidden">
   <div class="relative z-10 px-6 md:px-16 py-10 md:py-16">
     <div class="max-w-4xl mx-auto flex justify-center">
-      <div class="bg-white/90 backdrop-blur-sm rounded-2xl border border-sage/30 p-8 md:p-12 shadow-lg text-center w-full max-w-2xl" style="opacity:1;transform:none">
+      <!-- Container interno com blur funcional -->
+      <div class="rounded-2xl border border-sage/30 p-8 md:p-12 shadow-lg text-center w-full max-w-2xl"
+           style="background-color: rgba(255, 255, 255, 0.9); 
+                  backdrop-filter: blur(10px); 
+                  -webkit-backdrop-filter: blur(10px);
+                  opacity: 1; transform: none;">
         
         <!-- Título principal -->
         <h2 class="font-display text-4xl md:text-7xl text-sage-dark mb-8"
@@ -508,6 +513,8 @@ Até 24 Julho 2027
     </div>
   </div>
 </section>
+
+	 
  <div class="bg-ivory flex flex-col items-center py-16 md:py-20">
  <img src="images/bow-illustration-DWFdIPv5.png" alt class="w-16 md:w-20 h-auto opacity-80"></div>
  
