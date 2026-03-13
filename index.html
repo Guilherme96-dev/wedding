@@ -161,42 +161,50 @@ Até 24 Julho 2027
  
  <!-- Imagens a rodar -->
 <style>
+  <style>
+  /* Wrapper que limita o conteúdo à largura da tela */
   .marquee-wrapper {
-  width: 100%;
-  overflow: hidden;
-  height: 340px;
-  position: relative;
-}
+    width: 100%;
+    overflow: hidden;
+    height: 340px; /* altura padrão */
+    position: relative;
+  }
 
-.marquee {
-  display: flex;
-  width: 200%; /* metade para cada track */
-  animation: marquee 20s linear infinite;
-}
+  /* Container das tracks duplicadas */
+  .marquee {
+    display: flex;
+    width: 200%; /* cada track ocupa metade da largura total */
+    animation: marquee 20s linear infinite;
+  }
 
-.marquee-track {
-  display: flex;
-  flex: 1 0 50%; /* cada track ocupa metade da largura do container */
-}
+  /* Cada track de imagens ocupa metade da largura */
+  .marquee-track {
+    display: flex;
+    flex: 1 0 50%;
+    gap: 16px; /* espaçamento entre imagens */
+  }
 
-.marquee-track img {
-  width: 240px; 
-  height: 100%;
-  object-fit: cover;
-  margin-right: 16px;
-}
+  .marquee-track img {
+    width: 240px;
+    height: 100%;
+    object-fit: cover;
+    user-drag: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
 
-/* Animação contínua */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } 
-}
+  /* Animação contínua */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-/* Responsivo */
-@media (max-width: 640px) {
-  .marquee-wrapper { height: 200px; }
-  .marquee-track img { width: 140px; }
-}
+  /* Responsivo para telemóveis */
+  @media (max-width: 640px) {
+    .marquee-wrapper { height: 200px; }
+    .marquee-track img { width: 140px; }
+  }
+</style>
 </style>
 
 <div class="marquee-wrapper">
