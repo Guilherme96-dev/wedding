@@ -73,15 +73,16 @@ transition:opacity 1s ease;
 
 <img id="poster" src="images/02.png" class="intro-poster">
 
-<video id="introVideo"
-       class="intro-video"
-       preload="auto"
-       muted
-       playsinline
-       webkit-playsinline
-       poster="images/02.png">
+<video
+id="introVideo"
+class="intro-video"
+preload="auto"
+muted
+playsinline
+webkit-playsinline
+poster="images/02.png">
 
-<source src="images/video_intro_compact.mp4" type="video/mp4">
+<source src="images/video_intro_compact_h264.mp4" type="video/mp4">
 
 </video>
 
@@ -1011,17 +1012,15 @@ function startIntro(){
 
 poster.style.opacity = "0";
 
-setTimeout(()=>{
+video.addEventListener("canplay", () => {
 
-video.style.opacity = "1";
+    video.style.opacity = "1";
 
-video.play().then(()=>{
+    video.play().then(()=>{
+        videoStarted = true;
+    }).catch(()=>{});
 
-videoStarted = true;
-
-}).catch(()=>{});
-
-},200);
+},{once:true});
 
 }
 
