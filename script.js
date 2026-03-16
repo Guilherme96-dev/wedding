@@ -1,5 +1,4 @@
 <!-- Script página inicial -->
-<script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const intro = document.getElementById("intro");
@@ -84,13 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-</script>
+
 
 
 
 <!-- Countdown Script -->
- 
-<script>
+
 const weddingDate = new Date("July 24, 2027 12:00:00").getTime();
 
 function updateCountdown() {
@@ -109,11 +107,10 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
-</script>
 
 <!-- Função mudar de idioma Script -->
 
-<script>
+
 const btnPT = document.getElementById("btn-pt");
 const btnFR = document.getElementById("btn-fr");
 
@@ -164,11 +161,11 @@ btnFR.addEventListener("click", () => {
     setLanguage("fr");
     activateButton("fr");
 });
-</script>
+
  
 <!-- Adicionar campos ao resposta  --> 
  
-<script>
+
     const adultFields = document.getElementById('adult-fields');
     const childFields = document.getElementById('child-fields');
     const adultCountEl = document.getElementById('adult-count');
@@ -336,4 +333,3 @@ form.addEventListener("submit", function(e) {
     alert(lang === "fr" ? "Erreur lors de l'envoi de la réponse." : "Erro ao enviar resposta.");
   });
 });
-  </script>
