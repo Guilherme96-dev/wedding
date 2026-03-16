@@ -979,9 +979,6 @@ Até 24 Julho 2027
 
 
 <!-- Script página inicial -->
-
-<script>
-
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1012,15 +1009,17 @@ function startIntro(){
 
 poster.style.opacity = "0";
 
-video.addEventListener("canplay", () => {
+setTimeout(()=>{
 
-    video.style.opacity = "1";
+video.style.opacity = "1";
 
-    video.play().then(()=>{
-        videoStarted = true;
-    }).catch(()=>{});
+video.play().then(()=>{
 
-},{once:true});
+videoStarted = true;
+
+}).catch(()=>{});
+
+},200);
 
 }
 
@@ -1102,8 +1101,7 @@ muteLine.style.display="block";
 });
 
 </script>
-</script>
-	
+
 
 
 <!-- Countdown Script -->
