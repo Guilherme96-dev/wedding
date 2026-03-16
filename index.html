@@ -9,28 +9,11 @@
     <meta name=google content=notranslate>
     <meta property=og:title content="Casamento Inês &amp; Guilherme">
     <meta name=twitter:title content="Casamento Inês &amp; Guilherme">
-</head> 
- 
- <body>
 
-	 <!-- INTRO -->
-<div id="intro" class="intro">
+	<style>
 
-  <!-- imagem inicial -->
-  <img id="poster" src="images/02.png" class="intro-poster">
+/* bloquear scroll */
 
-  <!-- video intro -->
-  <video id="introVideo"
-         preload="auto"
-         playsinline
-         webkit-playsinline
-         class="intro-video">
-
-      <source src="images/video_intro_compact.mp4" type="video/mp4">
-
-  </video>
-
-</div>
 html.no-scroll,
 body.no-scroll{
   overflow: hidden;
@@ -73,62 +56,29 @@ body.no-scroll{
   transition:opacity 1s ease;
 }
 
-const intro = document.getElementById("intro");
-const poster = document.getElementById("poster");
-const video = document.getElementById("introVideo");
-const site = document.getElementById("siteContent");
-const bgVideo = document.getElementById("bgVideo");
+</style>
 
-/* bloquear scroll */
+	
+</head> 
+ 
+ <body>
 
-document.documentElement.classList.add("no-scroll");
-document.body.classList.add("no-scroll");
+	<div id="intro" class="intro">
 
-/* garantir autoplay do video background no iPhone */
+  <img id="poster" src="images/02.png" class="intro-poster">
 
-bgVideo.muted = true;
-bgVideo.play().catch(()=>{});
+  <video id="introVideo"
+         preload="auto"
+         playsinline
+         webkit-playsinline
+         class="intro-video">
 
-/* pré carregar video */
+      <source src="images/video_intro_compact.mp4" type="video/mp4">
 
-video.load();
+  </video>
 
-/* clique para começar intro */
+</div>
 
-intro.addEventListener("click", () => {
-
-    poster.style.opacity = "0";
-
-    setTimeout(() => {
-
-        video.style.opacity = "1";
-        video.play();
-
-    }, 300);
-
-}, { once:true });
-
-
-/* quando o video termina */
-
-video.addEventListener("ended", () => {
-
-    intro.style.opacity = "0";
-
-    setTimeout(() => {
-
-        intro.style.display = "none";
-
-        site.style.opacity = "1";
-
-        /* voltar a permitir scroll */
-
-        document.documentElement.classList.remove("no-scroll");
-        document.body.classList.remove("no-scroll");
-
-    }, 1000);
-
-});
 
 
 <!-- SITE -->
@@ -1019,6 +969,60 @@ Até 24 Julho 2027
  
 </div>
 
+
+
+<script>
+
+const intro = document.getElementById("intro");
+const poster = document.getElementById("poster");
+const video = document.getElementById("introVideo");
+const site = document.getElementById("siteContent");
+const bgVideo = document.getElementById("bgVideo");
+
+/* bloquear scroll */
+
+document.documentElement.classList.add("no-scroll");
+document.body.classList.add("no-scroll");
+
+/* pré carregar video */
+
+video.load();
+
+/* clique para começar intro */
+
+intro.addEventListener("click", () => {
+
+    poster.style.opacity = "0";
+
+    setTimeout(() => {
+
+        video.style.opacity = "1";
+        video.play();
+
+    }, 300);
+
+}, { once:true });
+
+/* quando o video termina */
+
+video.addEventListener("ended", () => {
+
+    intro.style.opacity = "0";
+
+    setTimeout(() => {
+
+        intro.style.display = "none";
+        site.style.opacity = "1";
+
+        document.documentElement.classList.remove("no-scroll");
+        document.body.classList.remove("no-scroll");
+
+    }, 1000);
+
+});
+
+</script>
+	
 <!-- Script para o audio -->
 
 <script>
