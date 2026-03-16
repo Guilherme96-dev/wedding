@@ -10,46 +10,55 @@
     <meta property=og:title content="Casamento Inês &amp; Guilherme">
     <meta name=twitter:title content="Casamento Inês &amp; Guilherme">
 
-	<style>
-
-/* bloquear scroll */
+<style>
 
 html.no-scroll,
 body.no-scroll{
-  overflow: hidden;
-  height:100%;
+overflow:hidden;
+height:100%;
 }
 
 /* INTRO */
 
 .intro{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:black;
-  z-index:9999;
-  cursor:pointer;
-  overflow:hidden;
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:black;
+z-index:999999;
+cursor:pointer;
+overflow:hidden;
+transition:opacity 0.8s ease;
 }
 
-.intro-poster,
-.intro-video{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.intro-poster{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+transition:opacity 0.6s ease;
 }
+
+.intro-video{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:opacity 0.8s ease;
 }
 
 /* SITE */
 
 #siteContent{
-  opacity:0;
-  transition:opacity 1s ease;
+opacity:0;
+transition:opacity 1s ease;
 }
 
 </style>
@@ -59,23 +68,24 @@ body.no-scroll{
  
  <body>
 
-	<div id="intro" class="intro">
+<!-- INTRO -->
+<div id="intro" class="intro">
 
-  <img id="poster" src="images/02.png" class="intro-poster">
+<img id="poster" src="images/02.png" class="intro-poster">
 
-  <video id="introVideo"
+<video id="introVideo"
+       class="intro-video"
        preload="auto"
        muted
        playsinline
        webkit-playsinline
-       class="intro-video">
+       poster="images/02.png">
 
-      <source src="images/video_intro_compact.mp4" type="video/mp4">
+<source src="images/video_intro_compact.mp4" type="video/mp4">
 
-  </video>
+</video>
 
 </div>
-
 
 
 <!-- SITE -->
@@ -967,32 +977,9 @@ Até 24 Julho 2027
 </div>
 
 
-<!-- Script para o audio -->
+<!-- Script página inicial -->
 
 <script>
-const audioBtn = document.getElementById("audio-toggle");
-const muteLine = document.getElementById("mute-line");
-const music = document.getElementById("bg-music");
-
-audioBtn.addEventListener("click", () => {
-
-    if(music.paused){
-
-        music.play();
-        muteLine.style.display = "none";
-
-    } else {
-
-        music.pause();
-        muteLine.style.display = "block";
-
-    }
-
-});
-</script>
-
-
-<!-- Script página inicial -->
 
 <script>
 
@@ -1002,49 +989,120 @@ const intro = document.getElementById("intro");
 const poster = document.getElementById("poster");
 const video = document.getElementById("introVideo");
 const site = document.getElementById("siteContent");
+
 const music = document.getElementById("bg-music");
+const audioBtn = document.getElementById("audio-toggle");
+const muteLine = document.getElementById("mute-line");
+
+/* bloquear scroll */
 
 document.documentElement.classList.add("no-scroll");
 document.body.classList.add("no-scroll");
 
+/* pré carregar vídeo */
+
 video.load();
 
-intro.addEventListener("click", () => {
+let videoStarted = false;
 
-    poster.style.opacity = "0";
+/* função iniciar intro */
 
-    setTimeout(() => {
+function startIntro(){
 
-        video.style.opacity = "1";
-        video.play().catch(()=>{});
+poster.style.opacity = "0";
 
-    }, 200);
+setTimeout(()=>{
 
-}, { once:true });
+video.style.opacity = "1";
 
-video.addEventListener("ended", () => {
+video.play().then(()=>{
 
-    intro.style.opacity = "0";
+videoStarted = true;
 
-    setTimeout(() => {
+}).catch(()=>{});
 
-        intro.style.display = "none";
-        site.style.opacity = "1";
+},200);
 
-        document.documentElement.classList.remove("no-scroll");
-        document.body.classList.remove("no-scroll");
+}
 
-        /* começar música */
+/* click desktop */
 
-        music.volume = 0.6;
-        music.play().catch(()=>{});
+intro.addEventListener("click", startIntro, {once:true});
 
-    }, 800);
+/* touch mobile */
+
+intro.addEventListener("touchstart", startIntro, {once:true});
+
+/* quando o vídeo termina */
+
+video.addEventListener("ended", ()=>{
+
+if(!videoStarted) return;
+
+intro.style.opacity="0";
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+site.style.opacity="1";
+
+/* desbloquear scroll */
+
+document.documentElement.classList.remove("no-scroll");
+document.body.classList.remove("no-scroll");
+
+/* começar música */
+
+music.volume = 0;
+
+music.play().catch(()=>{});
+
+/* fade-in música */
+
+let vol=0;
+
+const fade = setInterval(()=>{
+
+if(vol<0.6){
+
+vol+=0.02;
+
+music.volume=vol;
+
+}else{
+
+clearInterval(fade);
+
+}
+
+},120);
+
+},800);
+
+});
+
+/* botão áudio */
+
+audioBtn.addEventListener("click",()=>{
+
+if(music.paused){
+
+music.play();
+muteLine.style.display="none";
+
+}else{
+
+music.pause();
+muteLine.style.display="block";
+
+}
 
 });
 
 });
 
+</script>
 </script>
 	
 
