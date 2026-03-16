@@ -995,28 +995,29 @@ document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("no-scroll");
   document.body.classList.add("no-scroll");
 
-  /* Pré-carregar vídeo */
-  video.load();
-
   let videoStarted = false;
 
   /* Função iniciar intro */
   function startIntro(e) {
     e.preventDefault(); // garante interação válida no mobile
 
-    poster.style.opacity = "0";
-    video.style.opacity = "1";
+    // Pré-carregar vídeo
+    video.load();
 
-    video.play()
-      .then(() => {
-        videoStarted = true;
-      })
-      .catch(err => {
-        console.log("Falha ao iniciar vídeo:", err);
-      });
+    // Esperar até o primeiro frame estar pronto
+    video.addEventListener("loadeddata", () => {
+      poster.style.opacity = "0";  // esconde o poster
+      video.style.opacity = "1";   // mostra vídeo
+
+      video.play()
+        .then(() => {
+          videoStarted = true;
+        })
+        .catch(err => console.log("Falha ao iniciar vídeo:", err));
+    }, { once: true });
   }
 
-  /* Usar pointerdown para cobrir desktop e mobile */
+  /* Usar pointerdown para desktop e mobile */
   intro.addEventListener("pointerdown", startIntro, { once: true });
 
   /* Quando o vídeo termina */
