@@ -1,18 +1,107 @@
-<!-- Script página inicial -->
-document.addEventListener("DOMContentLoaded", () => { const intro = document.getElementById("intro"); const poster = document.getElementById("poster"); const video = document.getElementById("introVideo"); const site = document.getElementById("siteContent"); const music = document.getElementById("bg-music"); const audioBtn = document.getElementById("audio-toggle"); const muteLine = document.getElementById("mute-line"); /* Bloquear scroll */ document.documentElement.classList.add("no-scroll"); document.body.classList.add("no-scroll"); let videoStarted = false; /* Função iniciar intro */ function startIntro(e) { e.preventDefault(); // garante interação válida no mobile // Pré-carregar vídeo video.load(); // Esperar até o primeiro frame estar pronto video.addEventListener("loadeddata", () => { poster.style.opacity = "0"; // esconde o poster video.style.opacity = "1"; // mostra vídeo video.play() .then(() => { videoStarted = true; }) .catch(err => console.log("Falha ao iniciar vídeo:", err)); }, { once: true }); } /* Usar pointerdown para desktop e mobile */ intro.addEventListener("pointerdown", startIntro, { once: true }); /* Quando o vídeo termina */ video.addEventListener("ended", () => { if (!videoStarted) return; intro.style.opacity = "0"; setTimeout(() => { intro.style.display = "none"; site.style.opacity = "1"; const bgVideo = document.getElementById("bgVideo"); bgVideo.currentTime = 0; bgVideo.muted = true; bgVideo.play().catch(() => {}); /* Desbloquear scroll */ document.documentElement.classList.remove("no-scroll"); document.body.classList.remove("no-scroll"); /* Começar música */ music.volume = 0; music.play().catch(() => {}); /* Fade-in música */ let vol = 0; const fade = setInterval(() => { if (vol < 0.6) { vol += 0.02; music.volume = vol; } else { clearInterval(fade); } }, 120); }, 800); });
-																																																																																																																																																										
+document.addEventListener("DOMContentLoaded", () => {
 
+  const intro = document.getElementById("intro");
+  const poster = document.getElementById("poster");
+  const video = document.getElementById("introVideo");
+  const site = document.getElementById("siteContent");
+  const bgVideo = document.getElementById("bgVideo");
+  const music = document.getElementById("bg-music");
+  const audioBtn = document.getElementById("audio-toggle");
+  const muteLine = document.getElementById("mute-line");
+
+  // ⚠️ Verifica se os elementos existem
+  if (!intro || !video || !site || !bgVideo || !music) {
+    console.error("Elementos essenciais não encontrados no DOM");
+    return;
+  }
+
+  /* Bloquear scroll */
+  document.documentElement.classList.add("no-scroll");
+  document.body.classList.add("no-scroll");
+
+  let videoStarted = false;
+
+  /* Função iniciar intro */
+  function startIntro(e) {
+    e.preventDefault();
+
+    video.load();
+
+    video.addEventListener("loadeddata", () => {
+      poster.style.opacity = "0";
+      video.style.opacity = "1";
+
+      video.play()
+        .then(() => {
+          videoStarted = true;
+        })
+        .catch(err => console.log("Falha ao iniciar vídeo:", err));
+    }, { once: true });
+  }
+
+  // iOS: pointerdown pode falhar → também adiciona click
+  intro.addEventListener("pointerdown", startIntro, { once: true });
+  intro.addEventListener("click", startIntro, { once: true });
+
+  /* Quando o vídeo intro termina */
+  video.addEventListener("ended", () => {
+    if (!videoStarted) return;
+
+    // Transição suave
+    intro.style.opacity = "0";
+    site.style.opacity = "1";
+
+    // Pré-aquecer bgVideo
+    bgVideo.currentTime = 0;
+    bgVideo.muted = true;
+
+    const startBgVideo = () => {
+      bgVideo.play().catch(() => {});
+    };
+
+    if (bgVideo.readyState >= 2) {
+      startBgVideo();
+    } else {
+      bgVideo.addEventListener("loadeddata", startBgVideo, { once: true });
+      bgVideo.load();
+    }
+
+    // Remove intro após fade
+    setTimeout(() => {
+      intro.style.display = "none";
+
+      document.documentElement.classList.remove("no-scroll");
+      document.body.classList.remove("no-scroll");
+
+      // Música
+      music.volume = 0;
+      music.play().catch(() => {});
+
+      let vol = 0;
+      const fade = setInterval(() => {
+        if (vol < 0.6) {
+          vol += 0.02;
+          music.volume = vol;
+        } else {
+          clearInterval(fade);
+        }
+      }, 120);
+
+    }, 500);
+  });
 
   /* Botão de áudio */
-  audioBtn.addEventListener("click", () => {
-    if (music.paused) {
-      music.play().catch(() => {});
-      muteLine.style.display = "none";
-    } else {
-      music.pause();
-      muteLine.style.display = "block";
-    }
-  });
+  if (audioBtn && muteLine) {
+    audioBtn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play().catch(() => {});
+        muteLine.style.display = "none";
+      } else {
+        music.pause();
+        muteLine.style.display = "block";
+      }
+    });
+  }
 
 });
 
