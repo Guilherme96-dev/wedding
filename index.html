@@ -15,63 +15,69 @@
  
  <body>
 
-<!-- INTRO -->
-<div id="intro" class="intro">
+  <!-- INTRO -->
+  <div id="intro" class="intro">
 
-<img id="poster" src="images/02.png" class="intro-poster">
+    <img id="poster" src="images/02.png" class="intro-poster" alt="Poster">
 
-<video
-id="introVideo"
-class="intro-video"
-preload="auto"
-muted
-playsinline
-webkit-playsinline
-poster="images/02.png">
+    <video
+      id="introVideo"
+      class="intro-video"
+      preload="auto"
+      muted
+      playsinline
+      webkit-playsinline
+      poster="images/02.png"
+    >
+      <source src="images/video_intro_compact_h264.mp4" type="video/mp4">
+      <p>O seu navegador não suporta vídeos.</p>
+    </video>
 
-<source src="images/video_intro_compact_h264.mp4" type="video/mp4">
+  </div>
 
-</video>
+  <!-- SITE -->
+  <div id="siteContent">
 
-</div>
+    <div id="root">
+      <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events:none">
+        <ol tabindex="-1" class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol>
+      </div>
+      <section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section>
 
+      <main class="bg-background">
 
-<!-- SITE -->
-<div id="siteContent">
-	 
- <div id=root><div role=region aria-label="Notifications (F8)" tabindex=-1 style=pointer-events:none>
- <ol tabindex=-1 class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
- </ol>
- </div>
- <section aria-label="Notifications alt+T" tabindex=-1 aria-live=polite aria-relevant="additions text" aria-atomic=false></section>
- <main class=bg-background><div class="fixed top-4 right-4 z-50 flex gap-1 bg-white/90 backdrop-blur-sm border border-sage/30 shadow-md rounded-full p-1">
-<button id="btn-pt" class="px-3 py-1.5 rounded-full text-sm font-body font-medium transition-colors bg-sage-dark text-white">
-PT
-</button>
+        <!-- Botões de idioma -->
+        <div class="fixed top-4 right-4 z-50 flex gap-1 bg-white/90 backdrop-blur-sm border border-sage/30 shadow-md rounded-full p-1">
+          <button id="btn-pt" class="px-3 py-1.5 rounded-full text-sm font-body font-medium transition-colors bg-sage-dark text-white">
+            PT
+          </button>
+          <button id="btn-fr" class="px-3 py-1.5 rounded-full text-sm font-body font-medium transition-colors text-sage-dark hover:bg-sage/10">
+            FR
+          </button>
+        </div>
 
-<button id="btn-fr" class="px-3 py-1.5 rounded-full text-sm font-body font-medium transition-colors text-sage-dark hover:bg-sage/10">
-FR
-</button>
- </div>
- 
- <!-- Video Inicial -->
- 
- <section class="relative min-h-screen flex flex-col overflow-hidden bg-white">
- <div class="absolute inset-0 overflow-hidden">
- 
-<video id="bgVideo"
-       muted
-       loop
-       playsinline
-       webkit-playsinline
-       preload="auto"
-       class="absolute inset-0 w-full h-full object-cover">
-  <source src="images/video.mp4" type="video/mp4">
-</video>
+        <!-- Video de fundo -->
+        <section class="relative min-h-screen flex flex-col overflow-hidden bg-white">
+          <div class="absolute inset-0 overflow-hidden">
 
- <div class="absolute inset-0 bg-black/30">
- </div>
- </div>
+            <video
+              id="bgVideo"
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="auto"
+              class="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="images/video.mp4" type="video/mp4">
+              <p>O seu navegador não suporta vídeos.</p>
+            </video>
+
+            <!-- Overlay leve sobre o vídeo -->
+            <div class="absolute inset-0 bg-black/30"></div>
+
+          </div>
+			
  <div class="relative z-10 flex-1 flex flex-col">
  <div class="flex flex-col items-center text-center px-6 pt-20 md:pt-28">
 <p 
@@ -85,7 +91,7 @@ Vamo-nos casar!
 </p>
  <span class="font-display font-normal text-6xl md:text-8xl lg:text-9xl text-white block leading-[0.9] drop-shadow-lg">Inês</span>
  <span class="font-display font-normal text-3xl md:text-4xl text-white my-4 block italic drop-shadow-lg">&amp;</span>
- <span class="font-display font-normal text-6xl md:text-8xl lg:text-9xl text-white block leading-[0.9] drop-shadow-lg">Guilherme V3</span></h1></div><div class=flex-1></div>
+ <span class="font-display font-normal text-6xl md:text-8xl lg:text-9xl text-white block leading-[0.9] drop-shadow-lg">Guilherme V2</span></h1></div><div class=flex-1></div>
 <div class="flex flex-col items-center text-center px-6 pb-8"><div class="flex items-center justify-center gap-4 mb-4" style=opacity:1><span class="h-px bg-white/70 w-12 md:w-24"></span>
  <span class="text-white text-xl drop-shadow-lg">✦</span><span class="h-px bg-white/70 w-12 md:w-24"></span>
  </div>
