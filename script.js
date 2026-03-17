@@ -1,15 +1,15 @@
 <!-- Script página inicial -->
 document.addEventListener("DOMContentLoaded", () => {
 
-	const intro = document.getElementById("intro");
-	const poster = document.getElementById("poster");
-	const video = document.getElementById("introVideo");
-	const site = document.getElementById("siteContent");
-	
-	const music = document.getElementById("bg-music");
-	const audioBtn = document.getElementById("audio-toggle");
-	const muteLine = document.getElementById("mute-line");
-	
+  const intro = document.getElementById("intro");
+  const poster = document.getElementById("poster");
+  const video = document.getElementById("introVideo");
+  const site = document.getElementById("siteContent");
+  const bgVideo = document.getElementById("bgVideo");
+
+  const music = document.getElementById("bg-music");
+  const audioBtn = document.getElementById("audio-toggle");
+  const muteLine = document.getElementById("mute-line");
 
   /* Bloquear scroll */
   document.documentElement.classList.add("no-scroll");
@@ -17,17 +17,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let videoStarted = false;
 
+  /* 👉 Pré-ativar bgVideo (IMPORTANTE iOS) */
+  bgVideo.muted = true;
+  bgVideo.playsInline = true;
+
   /* Função iniciar intro */
   function startIntro(e) {
-    e.preventDefault(); // garante interação válida no mobile
+    e.preventDefault();
 
-    // Pré-carregar vídeo
     video.load();
 
-    // Esperar até o primeiro frame estar pronto
     video.addEventListener("loadeddata", () => {
-      poster.style.opacity = "0";  // esconde o poster
-      video.style.opacity = "1";   // mostra vídeo
+      poster.style.opacity = "0";
+      video.style.opacity = "1";
 
       video.play()
         .then(() => {
@@ -37,34 +39,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { once: true });
   }
 
-  /* Usar pointerdown para desktop e mobile */
   intro.addEventListener("pointerdown", startIntro, { once: true });
 
   /* Quando o vídeo termina */
   video.addEventListener("ended", () => {
     if (!videoStarted) return;
 
+    /* 👉 1. Começar bgVideo ANTES da transição */
+    bgVideo.currentTime = 0;
+
+    bgVideo.play().catch(err => {
+      console.log("Erro bgVideo:", err);
+    });
+
+    /* 👉 2. Fade suave (sem display:none imediato) */
     intro.style.opacity = "0";
+    site.style.opacity = "1";
 
+    /* 👉 3. Pequeno delay para garantir render estável */
     setTimeout(() => {
-      intro.style.display = "none";
-      site.style.opacity = "1";
 
-	
-	    const bgVideo = document.getElementById("bgVideo");
-	    bgVideo.currentTime = 0;
-	    bgVideo.muted = true;
-	    bgVideo.play().catch(() => {});
+      /* Só agora removemos o intro */
+      intro.style.display = "none";
 
       /* Desbloquear scroll */
       document.documentElement.classList.remove("no-scroll");
       document.body.classList.remove("no-scroll");
 
-      /* Começar música */
+      /* Música */
       music.volume = 0;
       music.play().catch(() => {});
 
-      /* Fade-in música */
       let vol = 0;
       const fade = setInterval(() => {
         if (vol < 0.6) {
@@ -75,9 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }, 120);
 
-    }, 800);
+    }, 500); // ⚠️ menor = menos tempo de artefactos
+
   });
 
+});
   /* Botão de áudio */
   audioBtn.addEventListener("click", () => {
     if (music.paused) {
