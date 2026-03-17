@@ -2256,12 +2256,3 @@ opacity:0;
 transition:opacity 1s ease;
 }
 
-#whiteFlash {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transition: opacity 0.18s ease;
-}
