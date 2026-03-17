@@ -42,49 +42,55 @@ document.addEventListener("DOMContentLoaded", () => {
   intro.addEventListener("pointerdown", startIntro, { once: true });
 
   /* Quando o vídeo termina */
-  video.addEventListener("ended", () => {
-    if (!videoStarted) return;
-
-    /* 👉 1. Começar bgVideo ANTES da transição */
-    bgVideo.currentTime = 0;
-
-    bgVideo.play().catch(err => {
-      console.log("Erro bgVideo:", err);
-    });
-
-    /* 👉 2. Fade suave (sem display:none imediato) */
-    intro.style.opacity = "0";
-    site.style.opacity = "1";
-
-    /* 👉 3. Pequeno delay para garantir render estável */
-    setTimeout(() => {
-
-      /* Só agora removemos o intro */
-      intro.style.display = "none";
-
-      /* Desbloquear scroll */
-      document.documentElement.classList.remove("no-scroll");
-      document.body.classList.remove("no-scroll");
-
-      /* Música */
-      music.volume = 0;
-      music.play().catch(() => {});
-
-      let vol = 0;
-      const fade = setInterval(() => {
-        if (vol < 0.6) {
-          vol += 0.02;
-          music.volume = vol;
-        } else {
-          clearInterval(fade);
-        }
-      }, 120);
-
-    }, 500); // ⚠️ menor = menos tempo de artefactos
-
-  });
+	video.addEventListener("ended", () => {
+	  if (!videoStarted) return;
+	
+	  const flash = document.getElementById("whiteFlash");
+	
+	  /* 👉 1. Mostrar flash branco */
+	  flash.style.opacity = "1";
+	
+	  /* 👉 2. Preparar bgVideo */
+	  bgVideo.currentTime = 0;
+	  bgVideo.muted = true;
+	
+	  bgVideo.play().catch(() => {});
+	
+	  /* 👉 3. Transição rápida */
+	  setTimeout(() => {
+	    intro.style.opacity = "0";
+	    site.style.opacity = "1";
+	
+	    /* esconder flash */
+	    flash.style.opacity = "0";
+	
+	    setTimeout(() => {
+	      intro.style.display = "none";
+	
+	      document.documentElement.classList.remove("no-scroll");
+	      document.body.classList.remove("no-scroll");
+	
+	      /* música */
+	      music.volume = 0;
+	      music.play().catch(() => {});
+	
+	      let vol = 0;
+	      const fade = setInterval(() => {
+	        if (vol < 0.6) {
+	          vol += 0.02;
+	          music.volume = vol;
+	        } else {
+	          clearInterval(fade);
+	        }
+	      }, 120);
+	
+	    }, 300);
+	
+	  }, 120); // ⚡ tempo crítico (ajusta entre 80–150ms)
+	});
 
 });
+
   /* Botão de áudio */
   audioBtn.addEventListener("click", () => {
     if (music.paused) {
