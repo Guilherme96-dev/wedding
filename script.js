@@ -1,14 +1,15 @@
 <!-- Script página inicial -->
 document.addEventListener("DOMContentLoaded", () => {
 
-  const intro = document.getElementById("intro");
-  const poster = document.getElementById("poster");
-  const video = document.getElementById("introVideo");
-  const site = document.getElementById("siteContent");
-
-  const music = document.getElementById("bg-music");
-  const audioBtn = document.getElementById("audio-toggle");
-  const muteLine = document.getElementById("mute-line");
+	const intro = document.getElementById("intro");
+	const poster = document.getElementById("poster");
+	const video = document.getElementById("introVideo");
+	const site = document.getElementById("siteContent");
+	
+	const music = document.getElementById("bg-music");
+	const audioBtn = document.getElementById("audio-toggle");
+	const muteLine = document.getElementById("mute-line");
+	
 
   /* Bloquear scroll */
   document.documentElement.classList.add("no-scroll");
@@ -48,6 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       intro.style.display = "none";
       site.style.opacity = "1";
+
+	
+	    const bgVideo = document.getElementById("bgVideo");
+	    bgVideo.currentTime = 0;
+	    bgVideo.muted = true;
+	    bgVideo.play().catch(() => {});
 
       /* Desbloquear scroll */
       document.documentElement.classList.remove("no-scroll");
