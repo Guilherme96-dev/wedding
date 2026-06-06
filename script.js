@@ -345,7 +345,16 @@ form.addEventListener("submit", function(e) {
 	.then(() => {
 	  clearInterval(interval);
 	  // Redireciona para a página de obrigado
-	  window.location.href = "obrigado.html#rsvp-confirmation";
+
+		const rsvpValue = new FormData(this).get("rsvp");
+
+		if (rsvpValue === "no") {
+		window.location.href = "obrigado_n.html#rsvp-confirmation";
+		} else {
+		window.location.href = "obrigado.html#rsvp-confirmation";
+		}
+
+		
 	})
   .catch(() => {
     clearInterval(interval);
