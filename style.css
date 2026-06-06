@@ -34,7 +34,7 @@
             font-family: "sweet-fancy-script";
             src: url("fonts/My Sweet Script.otf") format("opentype");
             font-style: normal;
-            font-weight: 300;
+            font-weight: 100;
             font-stretch: normal
         }
 
@@ -42,7 +42,7 @@
             font-family: "sweet-fancy-script";
             src: url("fonts/My Sweet Script.otf") format("opentype");
             font-style: normal;
-            font-weight: 500;
+            font-weight: 300;
             font-stretch: normal
         }
 
