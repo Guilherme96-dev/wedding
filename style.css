@@ -1,3 +1,51 @@
+ @font-face {
+            font-family: "arek-armenian";
+            src: url("fonts/ArekArmnTRIAL-Rg.otf") format("opentype");
+            font-style: normal;
+            font-weight: 400;
+            font-stretch: normal
+        }
+
+        @font-face {
+            font-family: "arek-armenian";
+            src: url("fonts/ArekArmnTRIAL-It.otf") format("opentype");
+            font-style: italic;
+            font-weight: 400;
+            font-stretch: normal
+        }
+
+        @font-face {
+            font-family: "arek-armenian";
+            src: url("fonts/ArekArmnTRIAL-Rg.otf") format("opentype");
+            font-style: normal;
+            font-weight: 700;
+            font-stretch: normal
+        }
+
+        @font-face {
+            font-family: "arek-armenian";
+            src: url("fonts/ArekArmnTRIAL-It.otf") format("opentype");
+            font-style: italic;
+            font-weight: 700;
+            font-stretch: normal
+        }
+
+        @font-face {
+            font-family: "sweet-fancy-script";
+            src: url("fonts/My Sweet Script.otf") format("opentype");
+            font-style: normal;
+            font-weight: 300;
+            font-stretch: normal
+        }
+
+        @font-face {
+            font-family: "sweet-fancy-script";
+            src: url("fonts/My Sweet Script.otf") format("opentype");
+            font-style: normal;
+            font-weight: 500;
+            font-stretch: normal
+        }
+
 *,:before,:after {
     --tw-border-spacing-x: 0;
     --tw-border-spacing-y: 0;
