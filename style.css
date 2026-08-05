@@ -2258,9 +2258,9 @@ transition:opacity 1s ease;
 
 .click-here {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(20deg);
+    transform: translate(-50%, -50%) rotate(-20deg);
 
     font-size: 14px;
     font-weight: bold;
