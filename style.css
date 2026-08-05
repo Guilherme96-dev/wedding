@@ -2262,7 +2262,7 @@ transition:opacity 1s ease;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-20deg);
 
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
