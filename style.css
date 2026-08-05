@@ -2260,7 +2260,7 @@ transition:opacity 1s ease;
     position: absolute;
     top: 65%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-20deg);
+    transform: translate(-50%, -50%) rotate(20deg);
 
     font-size: 14px;
     font-weight: bold;
@@ -2276,10 +2276,10 @@ transition:opacity 1s ease;
 
 @keyframes pulse {
     0%,100% {
-        transform: translate(-50%, -50%) rotate(-20deg) scale(1);
+        transform: translate(-50%, -50%) rotate(20deg) scale(1);
     }
     50% {
-        transform: translate(-50%, -50%) rotate(-20deg) scale(1.1);
+        transform: translate(-50%, -50%) rotate(20deg) scale(1.1);
     }
 }
 
